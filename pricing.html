@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing. Pocketbook</title>
+<meta name="description" content="Pocketbook pricing for UK police forces. A free six-week pilot, then a simple per-officer licence. UK hosted, procured through BlueLight Commercial or G-Cloud.">
+<meta property="og:title" content="Pocketbook pricing. Free pilot, then per officer per month.">
+<meta property="og:description" content="Six-week pilot at no cost. Force licence priced per officer, per month, billed annually. Multi-force and national by arrangement.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://pocketbook-flax.vercel.app/assets/officer-dusk.jpg">
+<meta name="theme-color" content="#0B1528">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230B1528'/%3E%3Crect x='8' y='7' width='16' height='18' rx='1.5' fill='%23F7F5F0'/%3E%3Crect x='11' y='11' width='10' height='1.6' fill='%230B1528'/%3E%3Crect x='11' y='15' width='10' height='1.6' fill='%230B1528'/%3E%3Crect x='11' y='19' width='6' height='1.6' fill='%23F5C400'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy-950:#070D1A;--navy-900:#0B1528;--navy-800:#112042;--navy-700:#1B2F5C;
+    --paper:#F7F5F0;--paper-2:#EEEBE3;--paper-3:#E4E0D5;--white:#FFFFFF;
+    --ink:#141821;--ink-2:#4B5263;--ink-3:#626B80;
+    --rule:rgba(20,24,33,.10);--rule-dark:rgba(247,245,240,.12);
+    --hivis:#F5C400;--hivis-ink:#3D3000;
+    --max:1180px;
+    --serif:"Instrument Serif",Georgia,"Times New Roman",serif;
+    --sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+    --mono:"Geist Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --r-lg:18px;--r-md:12px;--r-sm:8px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:17px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-feature-settings:"cv05","cv11","ss01"}
+  a{color:inherit}
+  h1,h2,h3,h4{margin:0;font-weight:400;line-height:1.05;letter-spacing:-0.005em}
+  h1,h2{font-family:var(--serif)}
+  h3,h4{font-family:var(--sans);font-weight:600;letter-spacing:-0.01em;line-height:1.3}
+  p{margin:0}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 clamp(20px,4vw,40px)}
+  :focus-visible{outline:3px solid var(--hivis);outline-offset:3px;border-radius:2px}
+  .skip{position:absolute;left:-999px;top:8px;background:var(--hivis);color:var(--hivis-ink);padding:10px 14px;border-radius:6px;font-weight:600;z-index:100}
+  .skip:focus{left:8px}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);display:inline-flex;align-items:center;gap:10px}
+  .eyebrow::before{content:"";width:22px;height:1px;background:currentColor;opacity:.7}
+  .dark .eyebrow{color:rgba(247,245,240,.62)}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;font-weight:600;font-size:15.5px;padding:14px 22px;border-radius:999px;border:1px solid transparent;transition:transform .2s var(--ease),background .2s var(--ease),border-color .2s var(--ease);white-space:nowrap;cursor:pointer;font-family:var(--sans);line-height:1}
+  .btn:active{transform:translateY(1px)}
+  .btn svg{width:16px;height:16px;flex:none}
+  .btn-hivis{background:var(--hivis);color:var(--hivis-ink)}
+  .btn-hivis:hover{background:#FFD21A}
+  .btn-navy{background:var(--navy-900);color:var(--paper)}
+  .btn-navy:hover{background:var(--navy-800)}
+  .btn-ghost-dark{border-color:rgba(247,245,240,.28);color:var(--paper);background:transparent}
+  .btn-ghost-dark:hover{background:rgba(247,245,240,.07);border-color:rgba(247,245,240,.45)}
+  .btn-ghost-light{border-color:rgba(20,24,33,.18);color:var(--ink);background:transparent}
+  .btn-ghost-light:hover{background:rgba(20,24,33,.05)}
+
+  .nav-wrap{position:sticky;top:0;z-index:50;background:rgba(11,21,40,.72);backdrop-filter:blur(14px) saturate(140%);-webkit-backdrop-filter:blur(14px) saturate(140%);border-bottom:1px solid transparent;transition:border-color .3s var(--ease),background .3s var(--ease)}
+  .nav-wrap.scrolled{border-bottom-color:var(--rule-dark);background:rgba(11,21,40,.86)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px;color:var(--paper)}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:600;text-decoration:none;font-size:17.5px;letter-spacing:-0.01em}
+  .brand svg{display:block}
+  .nav-links{display:flex;gap:30px;align-items:center;font-size:14.5px;font-weight:500}
+  .nav-links a{text-decoration:none;color:rgba(247,245,240,.78);transition:color .2s}
+  .nav-links a:hover,.nav-links a[aria-current]{color:var(--paper)}
+  .nav .btn{padding:10px 16px;font-size:14px}
+
+  /* header */
+  .head{position:relative;background:var(--navy-900);color:var(--paper);overflow:hidden;isolation:isolate}
+  .head::before{content:"";position:absolute;inset:0;z-index:-2;background:
+      radial-gradient(900px 520px at 80% 0%, rgba(27,47,92,.85), transparent 62%),
+      radial-gradient(700px 420px at 5% 100%, rgba(245,196,0,.10), transparent 60%),
+      linear-gradient(180deg,var(--navy-900) 0%,var(--navy-950) 100%)}
+  .head::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+      background-image:linear-gradient(rgba(247,245,240,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(247,245,240,.045) 1px,transparent 1px);
+      background-size:56px 56px;
+      -webkit-mask-image:radial-gradient(ellipse 70% 80% at 50% 0%,#000 30%,transparent 100%);mask-image:radial-gradient(ellipse 70% 80% at 50% 0%,#000 30%,transparent 100%)}
+  .head .wrap{position:relative;z-index:1;padding-top:clamp(56px,8vw,96px);padding-bottom:clamp(140px,16vw,200px);display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(32px,5vw,72px);align-items:end}
+  .head h1{font-size:clamp(44px,5.8vw,80px);line-height:.98;letter-spacing:-0.015em;margin-top:22px;max-width:14ch;text-wrap:balance}
+  .head h1 em{font-style:italic;color:#FFF3B0}
+  .head .lede{margin-top:22px;font-size:clamp(17px,1.3vw,19px);color:rgba(247,245,240,.78);max-width:50ch}
+  .head .aside{font-size:15px;color:rgba(247,245,240,.75);border-left:1px solid rgba(247,245,240,.25);padding-left:20px;max-width:40ch}
+  .head .aside b{display:block;color:var(--paper);font-weight:600;margin-bottom:6px}
+
+  /* tiers */
+  .tiers-wrap{margin-top:clamp(-110px,-12vw,-150px);position:relative;z-index:2}
+  .tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;align-items:stretch}
+  .tier{background:var(--white);border:1px solid var(--rule);border-radius:var(--r-lg);padding:clamp(22px,2.4vw,30px);display:flex;flex-direction:column;gap:18px;box-shadow:0 30px 70px -40px rgba(7,13,26,.5);position:relative}
+  .tier .tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);display:flex;justify-content:space-between;align-items:center}
+  .tier .tag .pill{background:var(--paper-2);color:var(--ink-2);padding:4px 9px;border-radius:999px}
+  .tier h2{font-family:var(--sans);font-weight:600;font-size:22px;letter-spacing:-0.012em}
+  .tier .for{color:var(--ink-2);font-size:15px;min-height:3lh}
+  .price{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;border-top:1px solid var(--rule);padding-top:18px}
+  .price .amt{font-family:var(--serif);font-size:clamp(44px,4vw,60px);line-height:.95;letter-spacing:-0.02em;color:var(--navy-900)}
+  .price .unit{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;color:var(--ink-3);text-transform:uppercase;line-height:1.4}
+  .tier ul{list-style:none;padding:0;margin:0;display:grid;gap:10px;font-size:15px;color:var(--ink)}
+  .tier li{display:flex;gap:10px;align-items:flex-start}
+  .tier li svg{width:16px;height:16px;flex:none;margin-top:3px;color:var(--navy-800)}
+  .tier li.muted{color:var(--ink-3)}
+  .tier li.muted svg{color:var(--paper-3)}
+  .tier .cta{margin-top:auto;display:grid;gap:10px;padding-top:8px}
+  .tier .cta small{font-size:12.5px;color:var(--ink-3);text-align:center}
+  .tier.featured{background:var(--navy-900);color:var(--paper);border-color:transparent;box-shadow:0 40px 90px -40px rgba(7,13,26,.85)}
+  .tier.featured .tag{color:rgba(247,245,240,.6)}
+  .tier.featured .tag .pill{background:var(--hivis);color:var(--hivis-ink)}
+  .tier.featured .for{color:rgba(247,245,240,.75)}
+  .tier.featured .price{border-top-color:var(--rule-dark)}
+  .tier.featured .price .amt{color:var(--paper)}
+  .tier.featured .price .unit{color:rgba(247,245,240,.6)}
+  .tier.featured ul{color:var(--paper)}
+  .tier.featured li svg{color:var(--hivis)}
+  .tier.featured .cta small{color:rgba(247,245,240,.6)}
+  .indicative{margin-top:18px;font-family:var(--mono);font-size:12px;letter-spacing:.03em;color:var(--ink-3);display:flex;gap:10px;align-items:flex-start;max-width:78ch}
+  .indicative::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--hivis);flex:none;margin-top:6px}
+
+  section{padding:clamp(72px,9vw,120px) 0}
+  .section-head{max-width:62ch}
+  .section-head h2{font-size:clamp(34px,4.2vw,54px);margin-top:18px;letter-spacing:-0.012em;text-wrap:balance}
+  .section-head h2 em{font-style:italic;color:var(--navy-800)}
+  .section-head p{margin-top:18px;color:var(--ink-2);font-size:clamp(16.5px,1.25vw,18.5px);max-width:56ch}
+
+  /* calculator */
+  .calc{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .calc-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(32px,5vw,72px);align-items:center}
+  .calc-card{background:var(--white);border:1px solid var(--rule);border-radius:var(--r-lg);padding:clamp(22px,2.6vw,32px);display:grid;gap:22px}
+  .calc-card label{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);display:flex;justify-content:space-between;align-items:baseline}
+  .calc-card label output{font-family:var(--serif);font-size:34px;letter-spacing:-0.02em;color:var(--navy-900);text-transform:none}
+  input[type=range]{width:100%;appearance:none;-webkit-appearance:none;height:4px;border-radius:2px;background:linear-gradient(90deg,var(--navy-900) var(--pct,10%),var(--paper-3) var(--pct,10%));outline:none;margin:6px 0 0}
+  input[type=range]::-webkit-slider-thumb{appearance:none;-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:var(--hivis);border:3px solid var(--navy-900);cursor:pointer;box-shadow:0 6px 16px -6px rgba(7,13,26,.6)}
+  input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--hivis);border:3px solid var(--navy-900);cursor:pointer}
+  .ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:10.5px;color:var(--ink-3);letter-spacing:.04em;margin-top:-8px}
+  .results{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .res{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r-md);padding:16px 18px}
+  .res .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+  .res .v{font-family:var(--serif);font-size:clamp(30px,2.8vw,40px);letter-spacing:-0.02em;color:var(--navy-900);line-height:1.05;margin-top:6px}
+  .res .v small{font-family:var(--mono);font-size:11px;letter-spacing:.04em;color:var(--ink-3);margin-left:6px}
+  .res.dark{background:var(--navy-900);border-color:transparent}
+  .res.dark .k{color:rgba(247,245,240,.6)}
+  .res.dark .v{color:var(--paper)}
+  .res.dark .v small{color:rgba(247,245,240,.6)}
+  .calc-note{font-size:13px;color:var(--ink-3);line-height:1.55}
+  .calc-copy .pt{margin-top:26px;display:grid;gap:14px}
+  .calc-copy .pt div{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:start;color:var(--ink-2);font-size:16px}
+  .calc-copy .pt b{color:var(--ink);font-weight:600}
+  .calc-copy .pt span.n{font-family:var(--mono);font-size:12px;color:var(--ink-3);padding-top:4px}
+
+  /* compare */
+  .compare{background:var(--paper)}
+  .table-wrap{margin-top:clamp(36px,4vw,56px);overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--rule);border-radius:var(--r-lg);background:var(--white)}
+  table{width:100%;border-collapse:separate;border-spacing:0;min-width:760px;font-size:15px}
+  thead th{position:sticky;top:68px;background:var(--white);z-index:1;text-align:left;padding:18px 20px;font-weight:600;font-size:15px;border-bottom:1px solid var(--rule)}
+  thead th small{display:block;font-family:var(--mono);font-weight:400;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:4px}
+  thead th.f{background:var(--navy-900);color:var(--paper)}
+  thead th.f small{color:rgba(247,245,240,.6)}
+  thead th:first-child{width:38%}
+  tbody th{text-align:left;font-weight:500;padding:14px 20px;color:var(--ink);border-bottom:1px solid var(--rule)}
+  tbody th small{display:block;font-weight:400;color:var(--ink-3);font-size:13px;margin-top:2px}
+  tbody td{padding:14px 20px;border-bottom:1px solid var(--rule);color:var(--ink-2);vertical-align:middle}
+  tbody td.f{background:rgba(17,32,66,.04)}
+  tbody tr.group th{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500;padding-top:26px;padding-bottom:8px;background:var(--paper);border-bottom:1px solid var(--rule)}
+  tbody tr.group td{background:var(--paper);border-bottom:1px solid var(--rule)}
+  tbody tr:last-child th,tbody tr:last-child td{border-bottom:0}
+  .yes,.no{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%}
+  .yes{background:rgba(17,32,66,.08);color:var(--navy-800)}
+  .no{background:transparent;color:var(--paper-3)}
+  .yes svg,.no svg{width:12px;height:12px}
+  td.f .yes{background:var(--navy-900);color:var(--hivis)}
+  td .txt{font-size:14px;color:var(--ink)}
+
+  /* procurement */
+  .procure{background:var(--navy-900);color:var(--paper);position:relative;overflow:hidden;isolation:isolate}
+  .procure::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(800px 500px at 90% 100%,rgba(27,47,92,.9),transparent 62%),linear-gradient(180deg,var(--navy-900),var(--navy-950))}
+  .procure .section-head h2 em{color:#FFF3B0}
+  .procure .section-head p{color:rgba(247,245,240,.75)}
+  .routes{margin-top:clamp(36px,4vw,56px);display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .route{background:rgba(247,245,240,.04);border:1px solid var(--rule-dark);border-radius:var(--r-lg);padding:24px;display:grid;gap:12px;align-content:start}
+  .route .n{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--hivis)}
+  .route h3{font-size:18.5px;color:var(--paper)}
+  .route p{color:rgba(247,245,240,.72);font-size:15px}
+  .route .who{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:rgba(247,245,240,.55);border-top:1px solid var(--rule-dark);padding-top:12px;margin-top:4px}
+
+  /* faq */
+  .faq{background:var(--paper-2);border-top:1px solid var(--rule)}
+  .faq-grid{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(32px,5vw,72px);align-items:start}
+  .faq-grid .section-head{position:sticky;top:96px}
+  details{border-top:1px solid var(--rule)}
+  details:last-of-type{border-bottom:1px solid var(--rule)}
+  summary{cursor:pointer;padding:22px 0;font-weight:600;font-size:18px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;letter-spacing:-0.01em}
+  summary::-webkit-details-marker{display:none}
+  summary .pm{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid rgba(20,24,33,.2);display:grid;place-items:center;position:relative;transition:transform .3s var(--ease),background .3s var(--ease)}
+  summary .pm::before,summary .pm::after{content:"";position:absolute;background:var(--ink);width:11px;height:1.5px;border-radius:1px;transition:transform .3s var(--ease)}
+  summary .pm::after{transform:rotate(90deg)}
+  details[open] summary .pm{background:var(--navy-900);border-color:var(--navy-900)}
+  details[open] summary .pm::before,details[open] summary .pm::after{background:var(--paper)}
+  details[open] summary .pm::after{transform:rotate(0)}
+  details p{padding:0 0 24px;color:var(--ink-2);max-width:66ch;font-size:16px}
+
+  /* close */
+  .close{position:relative;background:var(--navy-950);color:var(--paper);overflow:hidden;isolation:isolate;text-align:center}
+  .close::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(700px 400px at 50% 100%,rgba(27,47,92,.9),transparent 65%)}
+  .close h2{font-size:clamp(36px,4.6vw,60px);margin-top:18px;letter-spacing:-0.012em;text-wrap:balance}
+  .close h2 em{font-style:italic;color:#FFF3B0}
+  .close p{margin:18px auto 0;color:rgba(247,245,240,.78);font-size:18px;max-width:52ch}
+  .close .actions{margin-top:30px;display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+
+  footer{background:var(--navy-950);color:rgba(247,245,240,.6);padding:36px 0;font-size:14px;border-top:1px solid var(--rule-dark)}
+  footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+  footer .brand{color:var(--paper);font-size:15px}
+  footer nav{display:flex;gap:22px;flex-wrap:wrap}
+  footer a{color:rgba(247,245,240,.85);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal[data-delay="1"]{transition-delay:.08s}.reveal[data-delay="2"]{transition-delay:.16s}
+  @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+
+  @media (max-width:1000px){
+    .tiers{grid-template-columns:minmax(0,1fr)}
+    .routes{grid-template-columns:minmax(0,1fr)}
+  }
+  @media (max-width:880px){
+    .nav-links{display:none}
+    .head .wrap,.calc-grid,.faq-grid{grid-template-columns:minmax(0,1fr)}
+    .head .wrap{padding-bottom:clamp(150px,22vw,190px)}
+    .head .aside{border-left:0;padding-left:0;border-top:1px solid rgba(247,245,240,.25);padding-top:18px}
+    .faq-grid .section-head{position:static}
+    .results{grid-template-columns:minmax(0,1fr)}
+    thead th{top:0}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="nav-wrap" id="nav">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Pocketbook home">
+      <svg width="28" height="28" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#F7F5F0"/><rect x="8" y="7" width="16" height="18" rx="1.5" fill="#0B1528"/><rect x="11" y="11" width="10" height="1.6" fill="#F7F5F0"/><rect x="11" y="15" width="10" height="1.6" fill="#F7F5F0"/><rect x="11" y="19" width="6" height="1.6" fill="#F5C400"/></svg>
+      Pocketbook
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="/#how">How it works</a>
+      <a href="/#trust">Trust</a>
+      <a href="/pricing" aria-current="page">Pricing</a>
+      <a href="/#faq">Questions</a>
+    </nav>
+    <a class="btn btn-hivis" href="https://calendly.com/REPLACE-ME/20min">Book 20 minutes</a>
+  </div>
+</div>
+
+<main id="main">
+  <div class="head dark">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Pricing</span>
+        <h1>A free pilot. Then a price you can put in <em>a budget line.</em></h1>
+        <p class="lede">One licence per officer, per month, billed annually. Everything in the product is included at every tier. The difference is scale, integration depth and how much of the procurement we carry for you.</p>
+      </div>
+      <div class="aside"><b>No per-statement charges</b>Officers dictate as often as they need. We do not want anyone rationing a witness statement to save money.</div>
+    </div>
+  </div>
+
+  <div class="wrap tiers-wrap">
+    <div class="tiers">
+      <article class="tier reveal">
+        <div class="tag"><span>Step one</span><span class="pill">Start here</span></div>
+        <h2>Pilot</h2>
+        <p class="for">One team, ten to twenty officers, six weeks. We measure minutes from incident to filed report, CPS return rate and officer preference.</p>
+        <div class="price"><span class="amt">£0</span><span class="unit">for six weeks<br>no commitment</span></div>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Full product, no feature limits</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Your force template set up by us</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>DPA and DPIA drafted with your DPO</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>On-shift briefing for the team</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Written results report at week six</li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-navy" href="https://calendly.com/REPLACE-ME/20min">Book 20 minutes</a>
+          <small>Below procurement thresholds. A DPA is all the paperwork.</small>
+        </div>
+      </article>
+
+      <article class="tier featured reveal" data-delay="1">
+        <div class="tag"><span>Step two</span><span class="pill">Most forces</span></div>
+        <h2>Force</h2>
+        <p class="for">Roll out to response, neighbourhood and investigation teams across a single force. Priced per officer so it scales with how you deploy it.</p>
+        <div class="price"><span class="amt">£45</span><span class="unit">per officer, per month<br>billed annually</span></div>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Unlimited dictation and drafts</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>MG11, crime report and force-specific forms</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Sentence-to-audio links and full audit log</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Export to Niche, Connect or Athena</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>UK hosting, retention set to your MoPI schedule</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Onboarding, training and NPPV-cleared support</li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-hivis" href="https://calendly.com/REPLACE-ME/20min">Talk through a rollout</a>
+          <small>Twelve-month term. Price held for three years.</small>
+        </div>
+      </article>
+
+      <article class="tier reveal" data-delay="2">
+        <div class="tag"><span>Step three</span><span class="pill">By arrangement</span></div>
+        <h2>Multi-force</h2>
+        <p class="for">Regional collaborations, ROCUs and national programmes. Volume pricing, deeper integration and a procurement route we run with you.</p>
+        <div class="price"><span class="amt">Let's talk</span><span class="unit">volume pricing<br>per officer</span></div>
+        <ul>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Everything in Force, across every force</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Direct RMS integration, scoped and built</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Shared templates across the collaboration</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Dedicated success lead and quarterly reviews</li>
+          <li><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg>Benchmarking under any national framework</li>
+        </ul>
+        <div class="cta">
+          <a class="btn btn-ghost-light" href="mailto:hello@REPLACE-ME.com?subject=Pocketbook%20multi-force">Email us</a>
+          <small>Via BlueLight Commercial or G-Cloud.</small>
+        </div>
+      </article>
+    </div>
+    <p class="indicative">Indicative pricing while we are in discovery. Whatever we agree with a force is confirmed in writing before a pilot converts, and does not change during the term.</p>
+  </div>
+
+  <section class="calc">
+    <div class="wrap calc-grid">
+      <div class="calc-copy reveal">
+        <span class="eyebrow">What it costs your force</span>
+        <div class="section-head">
+          <h2>Pays for itself if it saves <em>five minutes a shift.</em></h2>
+          <p>Drag to the number of officers you would licence. The figures use the Force tier and a fully loaded constable cost of about £27 an hour.</p>
+        </div>
+        <div class="pt">
+          <div><span class="n">01</span><span><b>Per officer, per shift, it is about £2.25.</b> At twenty shifts a month, that is the licence fee.</span></div>
+          <div><span class="n">02</span><span><b>Five minutes of a constable's time is about £2.25.</b> A shop theft write-up takes most officers twenty to forty minutes.</span></div>
+          <div><span class="n">03</span><span><b>Everything above five minutes is time back on the street.</b> We measure it in the pilot rather than promise it here.</span></div>
+        </div>
+      </div>
+      <div class="calc-card reveal" data-delay="1">
+        <div>
+          <label for="officers">Officers licensed <output id="officers-out" for="officers">200</output></label>
+          <input type="range" id="officers" min="20" max="2000" step="10" value="200" aria-describedby="calc-note">
+          <div class="ticks"><span>20</span><span>500</span><span>1,000</span><span>1,500</span><span>2,000</span></div>
+        </div>
+        <div class="results">
+          <div class="res dark"><div class="k">Annual licence</div><div class="v" id="annual">£108,000</div></div>
+          <div class="res"><div class="k">Per month</div><div class="v" id="monthly">£9,000</div></div>
+          <div class="res"><div class="k">Per officer per shift</div><div class="v">£2.25</div></div>
+          <div class="res"><div class="k">Break-even time saved</div><div class="v">5<small>MIN / SHIFT</small></div></div>
+        </div>
+        <p class="calc-note" id="calc-note">Illustrative. Assumes Force tier at £45 per officer per month, 20 shifts a month, and a fully loaded constable cost of £27 an hour. Excludes VAT. Your force's numbers will differ, and we would rather use them.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="compare" id="compare">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Compare</span>
+        <div class="section-head">
+          <h2>The product is the same at every tier. <em>Here is what changes.</em></h2>
+          <p>We do not gate evidence features behind price. An officer on a pilot gets the same audit trail as a national programme.</p>
+        </div>
+      </div>
+      <div class="table-wrap reveal" data-delay="1">
+        <table>
+          <caption class="skip">Feature comparison across Pilot, Force and Multi-force tiers</caption>
+          <thead>
+            <tr>
+              <th scope="col">&nbsp;</th>
+              <th scope="col">Pilot<small>£0 · six weeks</small></th>
+              <th scope="col" class="f">Force<small>£45 per officer / month</small></th>
+              <th scope="col">Multi-force<small>volume pricing</small></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group"><th scope="rowgroup" colspan="4">Drafting</th></tr>
+            <tr><th scope="row">Dictation<small>Minutes, incidents, retries</small></th><td><span class="txt">Unlimited</span></td><td class="f"><span class="txt">Unlimited</span></td><td><span class="txt">Unlimited</span></td></tr>
+            <tr><th scope="row">MG11 witness statement</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Crime report</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Force-specific forms<small>Set up from your templates</small></th><td><span class="txt">Up to 3</span></td><td class="f"><span class="txt">Unlimited</span></td><td><span class="txt">Unlimited, shared</span></td></tr>
+            <tr><th scope="row">Gaps marked, nothing inferred</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Offline capture, sync on signal</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+
+            <tr class="group"><th scope="rowgroup" colspan="4">Evidence and audit</th></tr>
+            <tr><th scope="row">Sentence-to-audio links</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Edit history against the officer</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Disclosure export<small>Audio, draft, edits, signature</small></th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Retention<small>Per your MoPI schedule</small></th><td><span class="txt">Pilot period + 90 days</span></td><td class="f"><span class="txt">Force schedule</span></td><td><span class="txt">Force schedule</span></td></tr>
+
+            <tr class="group"><th scope="rowgroup" colspan="4">Integration</th></tr>
+            <tr><th scope="row">Copy and file export</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Niche, Connect, Athena export</th><td><span class="txt">Scoped during pilot</span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Direct RMS integration<small>Two-way, built with your IT lead</small></th><td><span class="no"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h8"/></svg></span></td><td class="f"><span class="txt">Scoped separately</span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Single sign-on<small>Entra ID or your IdP</small></th><td><span class="no"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h8"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+
+            <tr class="group"><th scope="rowgroup" colspan="4">Data and assurance</th></tr>
+            <tr><th scope="row">UK hosting, no training on your data</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">DPO pack<small>DPIA, data flow, retention, DPA</small></th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Security questionnaire and evidence</th><td><span class="txt">On request</span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+
+            <tr class="group"><th scope="rowgroup" colspan="4">Support</th></tr>
+            <tr><th scope="row">Onboarding and template set-up</th><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td class="f"><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Training</th><td><span class="txt">One on-shift briefing</span></td><td class="f"><span class="txt">Train the trainer + guides</span></td><td><span class="txt">Programme-wide rollout</span></td></tr>
+            <tr><th scope="row">Support hours<small>NPPV-cleared staff</small></th><td><span class="txt">Working hours</span></td><td class="f"><span class="txt">Working hours, 4 h response</span></td><td><span class="txt">24/7 for P1, named lead</span></td></tr>
+            <tr><th scope="row">Dedicated success lead</th><td><span class="no"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h8"/></svg></span></td><td class="f"><span class="txt">Shared</span></td><td><span class="yes"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3.5 8.5 3 3 6-7"/></svg></span></td></tr>
+            <tr><th scope="row">Contract term</th><td><span class="txt">Six weeks</span></td><td class="f"><span class="txt">12 months, price held 3 years</span></td><td><span class="txt">Framework call-off</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="procure dark" id="procure">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow">Procurement</span>
+        <div class="section-head">
+          <h2>Three routes to buy. <em>We have used all of them.</em></h2>
+          <p>We would rather spend the effort on your DPIA than on a bespoke tender. Each route below is one your commercial team already knows.</p>
+        </div>
+      </div>
+      <div class="routes">
+        <div class="route reveal">
+          <span class="n">ROUTE 01</span>
+          <h3>Direct award for the pilot</h3>
+          <p>A six-week pilot at no cost sits well below procurement thresholds. The paperwork is a data processing agreement and the DPIA, both of which we draft with your DPO.</p>
+          <span class="who">FOR: A SINGLE TEAM · WEEKS, NOT MONTHS</span>
+        </div>
+        <div class="route reveal" data-delay="1">
+          <span class="n">ROUTE 02</span>
+          <h3>BlueLight Commercial ICT Framework</h3>
+          <p>Lot 3, Software and Associated Services, allows direct award or further competition and runs to July 2029. We work through the framework's approved resellers so your call-off is standard.</p>
+          <span class="who">FOR: FORCE-WIDE LICENCE · BLC MEMBER FORCES</span>
+        </div>
+        <div class="route reveal" data-delay="2">
+          <span class="n">ROUTE 03</span>
+          <h3>G-Cloud</h3>
+          <p>For forces that prefer the Digital Marketplace, the Force and Multi-force tiers are structured to list on G-Cloud with a published service definition and pricing document.</p>
+          <span class="who">FOR: FORCES WITH A G-CLOUD PREFERENCE · MULTI-FORCE</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq">
+    <div class="wrap faq-grid">
+      <div class="section-head reveal">
+        <span class="eyebrow">Pricing questions</span>
+        <h2>The questions <em>finance asks.</em></h2>
+        <p>If the one you need is not here, it is a good reason to book twenty minutes.</p>
+      </div>
+      <div class="reveal" data-delay="1">
+        <details>
+          <summary>Who counts as an officer for licensing?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Anyone who dictates. That is normally police constables and sergeants on response, neighbourhood and investigation teams. PCSOs and police staff investigators who take statements are licensed at the same rate. Supervisors who only review and sign are not charged.</p>
+        </details>
+        <details>
+          <summary>Is the pilot really free? What is the catch?<span class="pm" aria-hidden="true"></span></summary>
+          <p>It is free, and the catch is that we ask for your numbers. We want minutes from incident to filed report, CPS return rate and officer preference, measured properly, because they are how we improve the product and how you decide whether to continue. There is no obligation to convert, and we delete pilot data on your schedule if you do not.</p>
+        </details>
+        <details>
+          <summary>Why per officer rather than per statement?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Because a per-statement price creates a reason not to write a statement, and that is the wrong incentive to put in front of an officer. A flat per-officer licence means the tenth witness account of the shift costs nothing extra.</p>
+        </details>
+        <details>
+          <summary>What happens to the price after year one?<span class="pm" aria-hidden="true"></span></summary>
+          <p>The per-officer rate agreed at signature is held for three years. Officer numbers can move up or down at each annual renewal. We do not apply inflation escalators inside the held period.</p>
+        </details>
+        <details>
+          <summary>Which budget does this usually come from?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Most conversations so far have sat with the digital or ICT lead, with sponsorship from the head of response or criminal justice. The pilot is small enough to run from a local team budget. We are happy to write the business case alongside whoever owns it.</p>
+        </details>
+        <details>
+          <summary>Are integrations extra?<span class="pm" aria-hidden="true"></span></summary>
+          <p>Exporting into Niche, Connect and Athena is included in the Force tier. Two-way direct integration, where drafts appear inside the RMS and case data flows back, is a scoped piece of work priced separately for a single force and included for multi-force programmes.</p>
+        </details>
+        <details>
+          <summary>Do you charge for the DPIA, data flow diagram or security evidence?<span class="pm" aria-hidden="true"></span></summary>
+          <p>No. They are part of being a supplier to policing. The DPO pack is included at every tier, including the pilot.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section class="close dark" id="contact">
+    <div class="wrap">
+      <span class="eyebrow" style="justify-content:center;width:100%">Next step</span>
+      <h2>Start with one team, <em>for six weeks, for nothing.</em></h2>
+      <p>Twenty minutes to talk through how your team writes up today. If a pilot makes sense, we draft the DPA and DPIA with your DPO and start on the next roster.</p>
+      <div class="actions">
+        <a class="btn btn-hivis" href="https://calendly.com/REPLACE-ME/20min">Book 20 minutes
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg>
+        </a>
+        <a class="btn btn-ghost-dark" href="/#how">See how it works</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Pocketbook home">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#F7F5F0"/><rect x="8" y="7" width="16" height="18" rx="1.5" fill="#0B1528"/><rect x="11" y="11" width="10" height="1.6" fill="#F7F5F0"/><rect x="11" y="15" width="10" height="1.6" fill="#F7F5F0"/><rect x="11" y="19" width="6" height="1.6" fill="#F5C400"/></svg>
+      Pocketbook
+    </a>
+    <span>A working name of REPLACE-ME Ltd, London.</span>
+    <nav aria-label="Footer"><a href="/pricing">Pricing</a><a href="mailto:hello@REPLACE-ME.com">hello@REPLACE-ME.com</a><a href="/privacy">Privacy</a></nav>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('nav');
+  const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
+  onScroll(); addEventListener('scroll', onScroll, {passive:true});
+
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }, {rootMargin:'0px 0px -8% 0px', threshold:0.1});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // Calculator: Force tier at £45 per officer per month.
+  const RATE = 45;
+  const range = document.getElementById('officers');
+  const out = document.getElementById('officers-out');
+  const annual = document.getElementById('annual');
+  const monthly = document.getElementById('monthly');
+  const gbp = new Intl.NumberFormat('en-GB', {style:'currency', currency:'GBP', maximumFractionDigits:0});
+  const update = () => {
+    const n = +range.value;
+    out.textContent = n.toLocaleString('en-GB');
+    monthly.textContent = gbp.format(n * RATE);
+    annual.textContent = gbp.format(n * RATE * 12);
+    range.style.setProperty('--pct', ((n - range.min) / (range.max - range.min) * 100) + '%');
+  };
+  range.addEventListener('input', update); update();
+</script>
+</body>
+</html>
