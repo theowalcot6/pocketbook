@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pocketbook. Dictate at the scene, file the statement before end of shift.</title>
+<meta name="description" content="Pocketbook turns an officer's spoken account into a crime report and MG11 in force template. Officer reviews, edits and files. Built for UK policing.">
+<meta property="og:title" content="Pocketbook. Dictate at the scene, file before end of shift.">
+<meta property="og:description" content="Spoken account in, crime report and MG11 out, in your force's template. UK hosted, PACE and CPIA aware.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23162B4E'/%3E%3Crect x='8' y='7' width='16' height='18' rx='1.5' fill='%23F6F4EE'/%3E%3Crect x='11' y='11' width='10' height='1.6' fill='%23162B4E'/%3E%3Crect x='11' y='15' width='10' height='1.6' fill='%23162B4E'/%3E%3Crect x='11' y='19' width='6' height='1.6' fill='%23162B4E'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#162B4E;      /* police blue, hero + footer */
+    --blue-deep:#0F1E38; /* hero depth */
+    --paper:#F6F4EE;     /* body background */
+    --ink:#1B1F27;       /* body text */
+    --ink-soft:#4E5563;  /* secondary text */
+    --rule:#D6D2C6;      /* hairlines */
+    --hivis:#F2C400;     /* one accent, used once */
+    --white:#FFFFFF;
+    --max:1120px;
+    --font:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  body{margin:0;font-family:var(--font);color:var(--ink);background:var(--paper);line-height:1.55;font-size:17px;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  h1,h2,h3{margin:0;font-weight:600;letter-spacing:-0.01em;line-height:1.15}
+  p{margin:0}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  :focus-visible{outline:3px solid var(--hivis);outline-offset:3px}
+
+  /* header */
+  header{background:var(--blue);color:var(--paper)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:68px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:600;text-decoration:none;font-size:18px}
+  .brand svg{display:block}
+  .nav a.cta{font-size:15px;text-decoration:none;border:1px solid rgba(246,244,238,.45);padding:9px 16px;border-radius:4px}
+  .nav a.cta:hover{background:rgba(246,244,238,.08)}
+
+  /* hero */
+  .hero{background:linear-gradient(180deg,var(--blue) 0%,var(--blue-deep) 100%);color:var(--paper);padding:56px 0 72px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:start}
+  .hero h1{font-size:clamp(34px,4.4vw,54px);max-width:14ch}
+  .hero .lede{margin-top:20px;font-size:19px;color:rgba(246,244,238,.82);max-width:46ch}
+  .hero .actions{margin-top:32px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-block;text-decoration:none;font-weight:600;padding:14px 22px;border-radius:4px;font-size:16px;border:1px solid transparent}
+  .btn-primary{background:var(--paper);color:var(--blue)}
+  .btn-primary:hover{background:var(--white)}
+  .btn-ghost{border-color:rgba(246,244,238,.45);color:var(--paper)}
+  .btn-ghost:hover{background:rgba(246,244,238,.08)}
+  .hero .meta{margin-top:18px;font-size:14px;color:rgba(246,244,238,.62)}
+
+  /* the transformation: the one memorable thing */
+  .demo{background:var(--paper);color:var(--ink);border-radius:6px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(0,0,0,.55)}
+  .demo-bar{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-bottom:1px solid var(--rule);font-size:13px;color:var(--ink-soft)}
+  .demo-bar b{color:var(--ink);font-weight:600}
+  .demo-body{display:grid;grid-template-columns:1fr 1fr}
+  .demo-col{padding:18px 18px 20px}
+  .demo-col + .demo-col{border-left:1px solid var(--rule)}
+  .demo-col h3{font-size:13px;font-weight:600;color:var(--ink-soft);margin-bottom:12px}
+  .spoken{font-size:15px;line-height:1.6;color:var(--ink)}
+  .spoken em{font-style:normal;color:var(--ink-soft)}
+  .statement{font-size:13.5px;line-height:1.6}
+  .statement .form{display:flex;justify-content:space-between;font-weight:600;border-bottom:2px solid var(--ink);padding-bottom:6px;margin-bottom:10px}
+  .statement dl{display:grid;grid-template-columns:auto 1fr;gap:3px 12px;margin:0 0 12px}
+  .statement dt{color:var(--ink-soft)}
+  .statement dd{margin:0}
+  .statement p{margin-bottom:8px}
+  .statement .redact{background:var(--ink);color:var(--ink);border-radius:2px;padding:0 3px;user-select:none}
+  .demo-foot{border-top:1px solid var(--rule);padding:12px 16px;font-size:13px;color:var(--ink-soft);display:flex;gap:16px;flex-wrap:wrap}
+  .demo-foot span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--hivis);margin-right:8px;vertical-align:1px}
+
+  /* sections */
+  section{padding:72px 0}
+  section + section{border-top:1px solid var(--rule)}
+  .section-head{max-width:60ch;margin-bottom:40px}
+  .section-head h2{font-size:clamp(26px,3vw,36px)}
+  .section-head p{margin-top:14px;color:var(--ink-soft);font-size:18px}
+
+  .pains{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+  .pains h3{font-size:19px;margin-bottom:10px}
+  .pains p{color:var(--ink-soft)}
+  .pains .fig{font-size:44px;font-weight:600;letter-spacing:-0.02em;line-height:1;margin-bottom:14px;color:var(--blue)}
+  .pains small{display:block;margin-top:10px;font-size:13px;color:var(--ink-soft)}
+
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;counter-reset:step}
+  .steps > div{position:relative;padding-top:18px;border-top:2px solid var(--blue)}
+  .steps > div::before{counter-increment:step;content:counter(step);position:absolute;top:-14px;left:0;background:var(--paper);padding-right:10px;font-weight:600;color:var(--blue);font-size:15px}
+  .steps h3{font-size:19px;margin-bottom:10px}
+  .steps p{color:var(--ink-soft)}
+
+  .trust{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .trust ul{list-style:none;padding:0;margin:0}
+  .trust li{padding:14px 0;border-bottom:1px solid var(--rule);display:grid;grid-template-columns:200px 1fr;gap:16px}
+  .trust li:first-child{border-top:1px solid var(--rule)}
+  .trust li b{font-weight:600}
+  .trust li span{color:var(--ink-soft)}
+  .trust .note{color:var(--ink-soft);font-size:15px;margin-top:20px}
+
+  details{border-top:1px solid var(--rule)}
+  details:last-of-type{border-bottom:1px solid var(--rule)}
+  summary{cursor:pointer;padding:18px 0;font-weight:600;font-size:18px;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+  summary::-webkit-details-marker{display:none}
+  summary::after{content:"+";font-weight:400;font-size:24px;color:var(--ink-soft);flex:none}
+  details[open] summary::after{content:"–"}
+  details p{padding:0 0 20px;color:var(--ink-soft);max-width:70ch}
+
+  .close{background:var(--blue);color:var(--paper);border-top:0}
+  .close .wrap{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:start}
+  .close h2{font-size:clamp(26px,3vw,36px)}
+  .close p{margin-top:14px;color:rgba(246,244,238,.8);font-size:18px;max-width:46ch}
+  .close .actions{margin-top:28px;display:flex;gap:14px;flex-wrap:wrap}
+  form{display:grid;gap:10px}
+  label{font-size:14px;color:rgba(246,244,238,.75)}
+  input{font:inherit;font-size:16px;padding:13px 14px;border-radius:4px;border:1px solid rgba(246,244,238,.35);background:rgba(246,244,238,.06);color:var(--paper)}
+  input::placeholder{color:rgba(246,244,238,.45)}
+  form .btn{justify-self:start}
+  form small{color:rgba(246,244,238,.6);font-size:13px}
+  .thanks{display:none;font-size:16px;color:var(--paper)}
+
+  footer{background:var(--blue-deep);color:rgba(246,244,238,.65);padding:28px 0;font-size:14px}
+  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  footer a{color:rgba(246,244,238,.85);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+
+  @media (max-width:880px){
+    .hero-grid,.trust,.close .wrap{grid-template-columns:1fr;gap:36px}
+    .pains,.steps{grid-template-columns:1fr;gap:32px}
+    .demo-body{grid-template-columns:1fr}
+    .demo-col + .demo-col{border-left:0;border-top:1px solid var(--rule)}
+    .trust li{grid-template-columns:1fr;gap:4px}
+    section{padding:56px 0}
+    .hero{padding:44px 0 56px}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Pocketbook home">
+      <svg width="26" height="26" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="4" fill="#F6F4EE"/><rect x="8" y="7" width="16" height="18" rx="1.5" fill="#162B4E"/><rect x="11" y="11" width="10" height="1.6" fill="#F6F4EE"/><rect x="11" y="15" width="10" height="1.6" fill="#F6F4EE"/><rect x="11" y="19" width="6" height="1.6" fill="#F6F4EE"/></svg>
+      Pocketbook
+    </a>
+    <a class="cta" href="https://calendly.com/REPLACE-ME/20min">Book 20 minutes</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Dictate at the scene. File the statement before end of shift.</h1>
+        <p class="lede">Pocketbook takes an officer's spoken account and drafts the crime report and MG11 in your force's template. The officer reads it, corrects it, and files it. Nothing goes anywhere without an officer's name on it.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://calendly.com/REPLACE-ME/20min">Book 20 minutes</a>
+          <a class="btn btn-ghost" href="#how">See how it works</a>
+        </div>
+        <p class="meta">Built in London for England and Wales forces. Currently running discovery with response and neighbourhood teams.</p>
+      </div>
+
+      <div class="demo" aria-label="Example: spoken account becomes an MG11 draft">
+        <div class="demo-bar"><span><b>Shoplifting, retail premises</b></span><span>2 min 40 s of dictation</span></div>
+        <div class="demo-body">
+          <div class="demo-col">
+            <h3>What the officer said</h3>
+            <p class="spoken">"Right so, attended Boots on the High Street about half two. Security guard, Marcus, said a male's walked out with two bottles of aftershave, hasn't paid. He's got him on CCTV, I've watched it back. Male's white, late twenties, grey tracksuit, black cap. Left on foot towards the bus station. Value's about a hundred and ten quid. Marcus is happy to give a statement, he's on shift till six. <em>Um</em>, I've seized the CCTV, one disc, exhibit MJ one. No injuries, no other witnesses."</p>
+          </div>
+          <div class="demo-col">
+            <h3>What Pocketbook drafted</h3>
+            <div class="statement">
+              <div class="form"><span>WITNESS STATEMENT</span><span>MG11</span></div>
+              <dl>
+                <dt>Statement of</dt><dd>PC <span class="redact">1234</span> JONES</dd>
+                <dt>Age</dt><dd>Over 18</dd>
+                <dt>Occupation</dt><dd>Police Constable</dd>
+              </dl>
+              <p>This statement (consisting of 1 page signed by me) is true to the best of my knowledge and belief and I make it knowing that, if it is tendered in evidence, I shall be liable to prosecution if I have wilfully stated in it anything which I know to be false or do not believe to be true.</p>
+              <p>On <span class="redact">DATE</span> at approximately 14:30 hours I attended Boots, High Street, <span class="redact">TOWN</span>, following a report of theft. I spoke with Marcus <span class="redact">SURNAME</span>, a security officer at the premises, who informed me that a male had left the store with two bottles of aftershave without payment. The total value of the items was approximately £110.</p>
+              <p>I viewed CCTV footage of the incident. The male is described as white, in his late twenties, wearing a grey tracksuit and a black cap. He left the premises on foot in the direction of the bus station. I seized one disc containing the CCTV footage, which I produce as exhibit MJ/1.</p>
+              <p>Marcus <span class="redact">SURNAME</span> is willing to provide a statement and is on duty until 18:00 hours. There were no injuries and no further witnesses identified.</p>
+            </div>
+          </div>
+        </div>
+        <div class="demo-foot"><span>Every sentence traces to the audio</span><span>Gaps marked for the officer to fill</span><span>Force template applied</span></div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>The account already exists. Officers type it three times.</h2>
+        <p>Radio update, pocket notebook, then the RMS at the end of shift, often from memory hours later. The words are the same each time. Only the format changes.</p>
+      </div>
+      <div class="pains">
+        <div>
+          <div class="fig">40%</div>
+          <h3>Of a shift on paperwork</h3>
+          <p>Home Office and NPCC estimates put officer time on administration at around 40 percent. For a response officer that is three to four hours a day at a keyboard.</p>
+        </div>
+        <div>
+          <div class="fig">4 to 6 h</div>
+          <h3>Between the incident and the write-up</h3>
+          <p>Statements written at 2am from memory lose detail. CPS and defence counsel find the gaps. Charges get dropped over missing descriptions and timings.</p>
+        </div>
+        <div>
+          <div class="fig">1 in 5</div>
+          <h3>Files returned by CPS</h3>
+          <p>National File Standard failures cost weeks per case. Most are formatting and completeness errors rather than problems with the evidence itself.</p>
+          <small>Figures are indicative. We would rather learn your force's numbers on a call.</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>How it works</h2>
+        <p>Designed around the way officers already give accounts: out loud, in order, straight after the event.</p>
+      </div>
+      <div class="steps">
+        <div>
+          <h3>Dictate on the handset</h3>
+          <p>Open Pocketbook on the force-issued phone and talk through the incident as you would to a colleague. Under three minutes for a standard shop theft. Works offline and syncs when you have signal.</p>
+        </div>
+        <div>
+          <h3>Pocketbook drafts the documents</h3>
+          <p>Crime report, MG11, and any force-specific forms your team uses. Written in plain, chronological English in your force's template. Anything not said is marked for you rather than invented.</p>
+        </div>
+        <div>
+          <h3>Review, correct, file</h3>
+          <p>Read the draft against your recollection. Tap any sentence to hear the audio it came from. Edit, sign, and export into Niche, Connect or Athena, or copy into whatever your force uses.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap trust">
+      <div>
+        <div class="section-head" style="margin-bottom:0">
+          <h2>Built for the scrutiny a police document gets</h2>
+          <p>A statement is evidence. We designed Pocketbook so the officer stays the author and the audit trail survives disclosure.</p>
+        </div>
+        <p class="note">We are a UK team with experience shipping AI documentation tools into NHS trusts, where the compliance bar is DCB0129, DSPT and MHRA. We are applying the same discipline to policing.</p>
+      </div>
+      <ul>
+        <li><b>Officer authored</b><span>Nothing is filed without an officer reading, editing and signing. The draft is a starting point, never the record.</span></li>
+        <li><b>Traceable</b><span>Each sentence links to the audio segment it came from. Disclosure officers can show exactly where every word originated.</span></li>
+        <li><b>Nothing invented</b><span>Facts not stated in the dictation are left as marked gaps. The system does not infer names, times or descriptions.</span></li>
+        <li><b>UK hosted</b><span>Audio and drafts stay in UK data centres. No training on your data. Retention set per force MoPI schedule.</span></li>
+        <li><b>Law enforcement processing</b><span>Designed against UK GDPR Part 3. DPIA template and data flow diagram supplied for your DPO.</span></li>
+        <li><b>Assurance</b><span>Working towards PDS assurance and Cyber Essentials Plus. NPPV-cleared staff for any deployment support.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Questions forces ask us</h2>
+      </div>
+      <details>
+        <summary>Is an AI-drafted statement admissible?</summary>
+        <p>The statement is the officer's. Pocketbook produces a draft from the officer's own words, the officer reviews and signs it, and the officer gives evidence on it. That is the same position as a typed-up pocket notebook entry. We keep the audio and the edit history so the provenance question has a clear answer in disclosure.</p>
+      </details>
+      <details>
+        <summary>Does this replace body-worn video?</summary>
+        <p>No. BWV records the incident. Pocketbook records the officer's account of the incident afterwards, which is what a statement is. We do not transcribe BWV; speaker attribution in noisy footage is unreliable and we would rather not put that in front of a court.</p>
+      </details>
+      <details>
+        <summary>Which record management systems do you integrate with?</summary>
+        <p>We start by exporting into whatever your force uses. Direct integration into Niche, Connect and Athena is where our team's background is, and we will scope it with your IT lead during a pilot.</p>
+      </details>
+      <details>
+        <summary>How does this fit with the national PoliceAI programme?</summary>
+        <p>PoliceAI is prioritising digital evidence triage and disclosure at national scale. Pocketbook sits earlier in the process, at the point an officer gives their account. We are happy to be evaluated under any national framework and would rather be benchmarked than not.</p>
+      </details>
+      <details>
+        <summary>What does a pilot look like?</summary>
+        <p>One team, ten to twenty officers, six weeks. We measure minutes from incident to filed report, CPS return rate, and officer preference. No procurement beyond a data processing agreement and a DPIA, which we draft with your DPO.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="close" id="contact">
+    <div class="wrap">
+      <div>
+        <h2>Tell us how your team writes up today</h2>
+        <p>We are talking to response, neighbourhood and investigation teams before we build further. Twenty minutes, no demo unless you want one. If you have left the job recently, we would like to hear from you too.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://calendly.com/REPLACE-ME/20min">Book 20 minutes</a>
+        </div>
+      </div>
+      <div>
+        <form id="lead" action="https://formspree.io/f/REPLACE-ME" method="POST">
+          <label for="email">Or leave a work email and we will get in touch</label>
+          <input id="email" name="email" type="email" required autocomplete="email" placeholder="name@force.police.uk">
+          <input name="role" type="text" autocomplete="organization-title" placeholder="Role and force (optional)">
+          <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+          <button class="btn btn-primary" type="submit">Send</button>
+          <small>We reply within one working day. No mailing list.</small>
+        </form>
+        <p class="thanks" id="thanks">Thanks. We will be in touch within one working day.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Pocketbook is a working name of <span id="co">REPLACE-ME Ltd</span>, London.</span>
+    <span><a href="mailto:hello@REPLACE-ME.com">hello@REPLACE-ME.com</a> &nbsp;&middot;&nbsp; <a href="/privacy">Privacy</a></span>
+  </div>
+</footer>
+
+<script>
+  // Progressive enhancement for the form: keep the page in place after submit.
+  const form = document.getElementById('lead');
+  form.addEventListener('submit', async (e) => {
+    if (!form.action.includes('formspree.io/f/') || form.action.includes('REPLACE-ME')) return; // fall back to normal POST until configured
+    e.preventDefault();
+    try {
+      const r = await fetch(form.action, {method:'POST', body:new FormData(form), headers:{'Accept':'application/json'}});
+      if (r.ok) { form.style.display='none'; document.getElementById('thanks').style.display='block'; }
+      else { form.submit(); }
+    } catch { form.submit(); }
+  });
+</script>
+</body>
+</html>
